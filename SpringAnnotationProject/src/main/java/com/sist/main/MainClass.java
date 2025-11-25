@@ -1,10 +1,11 @@
 package com.sist.main;
-
+import com.sist.config.*;
 import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,9 @@ public class MainClass {
 		// 패키지 단위 / 한개 클래스
 		              // => <bean>
 		// => 사용자 정의 클래스
-		ApplicationContext app=new ClassPathXmlApplicationContext("application-*.xml");
+		Class[] cls={EmpConfig.class,DatabaseConfig.class};
+		//ApplicationContext app=new ClassPathXmlApplicationContext("application-*.xml);
+		AnnotationConfigApplicationContext app=new AnnotationConfigApplicationContext(cls);
 		MainClass mc=app.getBean("mc",MainClass.class);
 		List<EmpVO> elist=mc.service.empListdata();
 		List<DeptVO> dlist=mc.service.deptListData();
