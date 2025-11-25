@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.sist.dao.RecipeDAO;
 import com.sist.vo.RecipeVO;
-@Service
+@Service("recipe")
 public class RecipeImpl implements RecipeService{
 	@Autowired
 	private RecipeDAO rDao;

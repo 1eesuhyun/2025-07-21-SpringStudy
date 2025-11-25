@@ -20,7 +20,7 @@ public class MainClass {
 		map.put("column", strColumn[cate]);
 		map.put("ss", ss);
 		
-		RecipeService rs=(RecipeService)app.getBean("recipeImpl");
+		RecipeService rs=(RecipeService)app.getBean("recipe");
 		int count=rs.recipeFindCount(map);
 		List<RecipeVO> list=rs.recipeFindData(map);
 		System.out.println("검색 결과:"+count+"건");
