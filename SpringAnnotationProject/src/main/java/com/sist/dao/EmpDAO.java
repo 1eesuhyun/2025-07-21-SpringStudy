@@ -1,0 +1,41 @@
+package com.sist.dao;
+
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import java.util.*;
+import com.sist.mapper.*;
+import com.sist.vo.*;
+@Repository
+public class EmpDAO {
+	@Autowired // 스프링 안에서 메모리 할당된 클래스만 적용이 가능
+	private EmpMapper mapper;
+	/*
+	 * @Select("SELECT empno,ename,job,sal,"
+			+"TO_CHAR(hiredate,'YYYY-MM-DD') as dbday "
+			+"FROM emp ORDER BY empno")
+	public List<EmpVO> empListdata();
+	
+	@Results({
+		@Result(property = "dvo.dname" , column ="dname"),
+		@Result(property = "dvo.loc" , column="loc"),
+	})
+	@Select("SELECT empno,ename,job,sal,"
+			+"TO_CHAR(hiredate,'YYYY-MM-DD') as dbday, "
+			+"dname,loc "
+			+"FROM emp,dept"
+			+"WHERE emp.deptno=dept.deptno"
+			+"AND empno=#{empno}")
+	public EmpVO empDetailData(int empno);
+	 */
+	public List<EmpVO> empListdata()
+	{
+		return mapper.empListdata();
+	}
+	public EmpVO empDetailData(int empno)
+	{
+		return mapper.empDetailData(empno);
+	}
+}
