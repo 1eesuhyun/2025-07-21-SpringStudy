@@ -16,7 +16,7 @@ import com.sist.vo.BoardVO;
 @Repository
 public class BoardDAO {
 	@Autowired
-	BoardMapper mapper;
+	private BoardMapper mapper;
 	/*
 	 * @Select("SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit,num"
 			+ "FROM (SELECT no,subject,name,regdate,hit,rownum as num"

@@ -4,7 +4,6 @@ import java.util.*;
 import lombok.Data;
 @Data
 public class FoodVO {
-	private int fno,hit;
-	private String name,type,phone,address,content,theme,parking,images,dbday;
-	private Date regdate;
+	private int fno;
+	private String name,type,poster;
 }

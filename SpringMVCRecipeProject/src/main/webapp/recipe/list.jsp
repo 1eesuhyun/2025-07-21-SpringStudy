@@ -32,10 +32,10 @@ p {
 		    <div class="thumbnail">
 		      <a href="#">
 		        <img src="${vo.poster }" style="width:230px;height: 120px;"
-		        	title="${vo.type }"
+		        	title="${vo.title }"
 		        >
 		        <div class="caption">
-		          <p>${vo.name}</p>
+		          <p>${vo.chef }</p>
 		        </div>
 		      </a>
 		    </div>
