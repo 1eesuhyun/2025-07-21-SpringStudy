@@ -1,6 +1,7 @@
 package com.sist.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -32,5 +33,13 @@ public class FoodDAO {
 	public int foodTotalPage()
 	{
 		return mapper.foodTotalPage();
+	}
+	public List<FoodVO> foodFindData(Map map)
+	{
+		return mapper.foodFindData(map);
+	}
+	public int foodFindTotalPage(Map map)
+	{
+		return mapper.foodFindTotalPage(map);
 	}
 }

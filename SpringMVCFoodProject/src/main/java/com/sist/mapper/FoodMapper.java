@@ -16,4 +16,17 @@ public interface FoodMapper {
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM menupan_food")
 	public int foodTotalPage();
 	
+	@Select("SELECT fno,name,poster,content,num "
+			+ "FROM(SELECT fno,name,poster,content,rownum as num "
+			+ "FROM(SELECT fno,name,poster,content "
+			+ "FROM menupan_food "
+			+ "WHERE ${column} LIKE '%'||#{fd}||'%' "
+			+ "ORDER BY fno ASC))"
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<FoodVO> foodFindData(Map map);
+	
+	@Select("SELECT CEIL(COUNT(*)/12.0) "
+			+ "FROM menupan_food "
+			+ "WHERE ${column} LIKE '%'||#{fd}||'%'")
+	public int foodFindTotalPage(Map map);
 }
