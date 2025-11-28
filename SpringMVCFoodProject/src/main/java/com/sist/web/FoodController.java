@@ -21,14 +21,14 @@ public class FoodController {
 		if(page==null)
 			page="1";
 		// 요청 처리
-		int curpage=Integer.parseInt(page);
+		int curPage=Integer.parseInt(page);
 		final int rowSize=12;
-		List<FoodVO> list=service.foodListData((curpage*rowSize)-(rowSize-1), (curpage*rowSize));
+		List<FoodVO> list=service.foodListData((curPage*rowSize)-(rowSize-1), (curPage*rowSize));
 		int totalpage=service.foodTotalPage();
 		
 		final int BLOCK=12;
-		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
-		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		int startPage=((curPage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curPage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endPage>totalpage)
 			endPage=totalpage;
 		
@@ -36,7 +36,7 @@ public class FoodController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("list",list);
-		model.addAttribute("curpage", curpage);
+		model.addAttribute("curpage", curPage);
 		model.addAttribute("totalpage", totalpage);
 		return "food/list";
 	}
@@ -61,16 +61,16 @@ public class FoodController {
 		int totalpage=service.foodFindTotalPage(map);
 		
 		final int BLOCK=10;
-		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
-		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		
-		if(endpage>totalpage)
-			endpage=totalpage;
+		if(endPage>totalpage)
+			endPage=totalpage;
 		
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
-		model.addAttribute("startpage", startpage);
-		model.addAttribute("endpage", endpage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		model.addAttribute("list", list);
 		model.addAttribute("fd", fd);
 		model.addAttribute("column", column);

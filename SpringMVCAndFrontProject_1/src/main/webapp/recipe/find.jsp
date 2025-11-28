@@ -33,7 +33,7 @@ p {
 	  <option value="chef" ${column=="chef"?"selected":"" }>쉐프명</option>
 	 </select>
 	 <input type="text" name="fd" class="input-sm" size=20 value="${fd!=null?fd:'' }">
-	 <button blass="btn-sm btn-primary"></button>
+	 <button class="btn-sm btn-primary"></button>
 	 </form>
 	</div>
 		<div class="row" style="margin-top: 10px">

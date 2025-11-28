@@ -1,24 +1,24 @@
 package com.sist.web;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.RestController;
+// 화면 제어(X) => Front로 데이터 전송
+// 1. 일반 문자열, 2. 정수, 3. JSON
+// JSON을 자동으로 구현
+import com.sist.dao.*;
+import com.sist.service.*;
+import com.sist.vo.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sist.service.FoodService;
-import com.sist.vo.FoodVO;
-import java.util.*;
-@Controller
+@RestController
 public class RestFoodController {
 	@Autowired
 	private FoodService service;
 	
 	@GetMapping(value="food/list_vue.do",produces = "text/plain;charset=UTF-8")
-	public String food_list_vue(int page) throws Exception
+	public String recipe_list_vue(int page) throws Exception
 	{
 		int curpage=page;
 		int rowSize=12;
@@ -47,6 +47,7 @@ public class RestFoodController {
 		
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(map);
+		
 		return json;
 	}
 }
