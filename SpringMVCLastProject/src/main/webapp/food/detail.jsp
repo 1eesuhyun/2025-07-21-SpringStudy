@@ -68,10 +68,11 @@
 			<table class="table">
 				<tr>
 					<td wid=30% class="text-center" rowspan="9"><img
-						:src="vo.poster" style="width: 100%;margin-top: 30px;"></td>
+						:src="vo.poster" style="width: 100%; margin-top: 30px;"></td>
 					<td colspan="2">
 						<h3>
-							<span id="name">{{vo.name}}</span>&nbsp;<span style="color: orange">{{vo.score}}</span>
+							<span id="name">{{vo.name}}</span>&nbsp;<span
+								style="color: orange">{{vo.score}}</span>
 						</h3>
 					</td>
 				</tr>
@@ -114,15 +115,15 @@
 				</tr>
 				<tr>
 					<td class="text-right"><a href="javascript:history.back()"
-						class="btn btn-sm btn-danger" >목록</a></td>
+						class="btn btn-sm btn-danger">목록</a></td>
 				</tr>
 			</table>
 			<table class="table">
-			 <tr>
-			  <td>
-			   <div id="map" style="width:100%;height:350px;"></div>
-			  </td>
-			 </tr>
+				<tr>
+					<td>
+						<div id="map" style="width: 100%; height: 350px;"></div>
+					</td>
+				</tr>
 			</table>
 		</div>
 	</div>

@@ -7,26 +7,28 @@ import com.sist.vo.*;
 import com.sist.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 // router
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 @RestController
+@CrossOrigin(origins = "*") // vue:8081 / react : 3000
 /*
- * 	DAO : µ¥ÀÌÅÍº£ÀÌ½º¸¸ ¿¬µ¿
- *  VO : µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀÖ´Â °ªÀ» ¹Þ¾Æ¼­ ºê¶ó¿ìÀú·Î Àü¼Û½Ã µ¥ÀÌÅÍ¸¦ ¹­¾î¼­ Àü¼Û
- *  Service : DAO¿©·¯°³¸¦ ¹­¾î¼­ ÇÑ¹ø¿¡ Ã³¸®
- *            => ±âÅ¸ Ã³¸®
- *            => ºñ¹Ð¹øÈ£ ¾ÏÈ£È­ / º¹È£È­
- *            => ºñ¹Ð¹øÈ£ È®ÀÎ
- *  Controller : JSP¸¦ Á¦¾î
- *               => forward / redirect : ÆÄÀÏ º¯°æ
+ * 	DAO : ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ *  VO : ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½
+ *  Service : DAOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ ï¿½Ñ¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+ *            => ï¿½ï¿½Å¸ Ã³ï¿½ï¿½
+ *            => ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½È£È­ / ï¿½ï¿½È£È­
+ *            => ï¿½ï¿½Ð¹ï¿½È£ È®ï¿½ï¿½
+ *  Controller : JSPï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ *               => forward / redirect : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
  *               => front : router
- *  RestController => ÀÚ¹Ù½ºÅ©¸³Æ® ¿¬µ¿ : JSON / ¹®ÀÚ¿­
+ *  RestController => ï¿½Ú¹Ù½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ : JSON / ï¿½ï¿½ï¿½Ú¿ï¿½
  *  -----------------------------------------------
- *   ¼­¹ö·Î¼­ÀÇ ¿ªÇÒ¸¸ ¼öÇà
+ *   ï¿½ï¿½ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½
  */
 public class FoodRestController {
-	// ½ºÇÁ¸µ¿¡ µî·ÏµÈ Å¬·¡½ºÁß¿¡ ÇÊ¿äÇÑ Å¬·¡½º °¡Áö°í ¿À±â @Autowired
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ @Autowired
 	@Autowired
 	private FoodService fservice;
 	
@@ -41,13 +43,13 @@ public class FoodRestController {
 		List<FoodVO> list=fservice.foodListData(start, end);
 		int totalpage=fservice.foodTotalPage();
 		
-		// ºí·Ïº° 
+		// ï¿½ï¿½Ïºï¿½ 
 		final int BLOCK=10;
 		int startPage=((page-1)/BLOCK*BLOCK)+1;
 		int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
 		if(endPage>totalpage)
 			endPage=totalpage;
-		// JavaScript Àü¼Û
+		// JavaScript ï¿½ï¿½ï¿½ï¿½
 		map.put("list", list);
 		map.put("curpage", page);
 		map.put("totalpage", totalpage);
@@ -58,7 +60,7 @@ public class FoodRestController {
 		{
 			ObjectMapper mapper=new ObjectMapper();
 			result=mapper.writeValueAsString(map);
-			// jackson : °´Ã¼º¯È¯ °´Ã¼ => JSON => Boot¿¡´Â Å¾Àç
+			// jackson : ï¿½ï¿½Ã¼ï¿½ï¿½È¯ ï¿½ï¿½Ã¼ => JSON => Bootï¿½ï¿½ï¿½ï¿½ Å¾ï¿½ï¿½
 		}catch(Exception ex) {}
 		return result;
 	}
@@ -80,24 +82,24 @@ public class FoodRestController {
 	{
 		String result="";
 		if(address==null)
-			address="¸¶Æ÷";
+			address="ï¿½ï¿½ï¿½ï¿½";
 		Map map=new HashMap();
 		final int rowSize=12;
 		int start=(rowSize*page)-(rowSize-1);
 		int end=(rowSize*page);
-		map.put("start", start); // ¸ÞÆÛ¾È¿¡ #{°ª}
+		map.put("start", start); // ï¿½ï¿½ï¿½Û¾È¿ï¿½ #{ï¿½ï¿½}
 		map.put("end", end);
 		map.put("address", address);
 		List<FoodVO> list=fservice.foodFindData(map);
 		int totalpage=fservice.foodFindTotalPage(address);
 		
-		// ºí·Ïº° 
+		// ï¿½ï¿½Ïºï¿½ 
 		final int BLOCK=10;
 		int startPage=((page-1)/BLOCK*BLOCK)+1;
 		int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
 		if(endPage>totalpage)
 			endPage=totalpage;
-		// JavaScript Àü¼Û
+		// JavaScript ï¿½ï¿½ï¿½ï¿½
 		map.put("list", list);
 		map.put("curpage", page);
 		map.put("totalpage", totalpage);
@@ -109,7 +111,7 @@ public class FoodRestController {
 		{
 			ObjectMapper mapper=new ObjectMapper();
 			result=mapper.writeValueAsString(map);
-			// jackson : °´Ã¼º¯È¯ °´Ã¼ => JSON => Boot¿¡´Â Å¾Àç
+			// jackson : ï¿½ï¿½Ã¼ï¿½ï¿½È¯ ï¿½ï¿½Ã¼ => JSON => Bootï¿½ï¿½ï¿½ï¿½ Å¾ï¿½ï¿½
 		}catch(Exception ex) {}
 		return result;
 	}
