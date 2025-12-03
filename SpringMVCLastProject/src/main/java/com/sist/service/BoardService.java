@@ -1,0 +1,13 @@
+package com.sist.service;
+
+import java.util.List;
+
+import com.sist.vo.BoardVO;
+// 의존성이 낮은 프로그램(결합성) => 다른 클래스에 영향이 없이
+// 유지보수 good
+public interface BoardService {
+	public List<BoardVO> boardListData(int start,int end);
+	public int boardTotalPage();
+	public void boardInsert(BoardVO vo);
+	
+}

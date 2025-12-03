@@ -3,9 +3,9 @@ package com.sist.service;
 import java.util.*;
 import com.sist.vo.*;
 /*
- * 	Å¬¶óÀÌ¾ðÆ® == Service == DAO == ¿À¶óÅ¬
+ * 	Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® == Service == DAO == ï¿½ï¿½ï¿½ï¿½Å¬
  *                         |
- *                        ¼öÁ¤
+ *                        ï¿½ï¿½ï¿½ï¿½
  */
 public interface FoodService {
 	public List<FoodVO> foodListData(int start,int end);
@@ -14,6 +14,8 @@ public interface FoodService {
 	public FoodVO foodCookieData(int fno);
 	public List<FoodVO> foodFindData(Map map);
 	public int foodFindTotalPage(String address);
+	public List<FoodVO> foodTypeData(Map map);
+	public int foodTypeTotalPage(String type);
 	
 	
 }

@@ -82,7 +82,7 @@ public class FoodRestController {
 	{
 		String result="";
 		if(address==null)
-			address="����";
+			address="마포";
 		Map map=new HashMap();
 		final int rowSize=12;
 		int start=(rowSize*page)-(rowSize-1);
@@ -115,4 +115,41 @@ public class FoodRestController {
 		}catch(Exception ex) {}
 		return result;
 	}
+	@GetMapping(value="food/type_vue.do",produces="text/plain;charset=UTF-8")
+	public String food_type_vue(int page,String type)
+	{
+		String result="";
+		Map map=new HashMap();
+		final int rowSize=12;
+		int start=(rowSize*page)-(rowSize-1);
+		int end=(rowSize*page);
+		map.put("start", start); // ���۾ȿ� #{��}
+		map.put("end", end);
+		map.put("type", type);
+		List<FoodVO> list=fservice.foodTypeData(map);
+		int totalpage=fservice.foodTypeTotalPage(type);
+		
+		// ��Ϻ� 
+		final int BLOCK=10;
+		int startPage=((page-1)/BLOCK*BLOCK)+1;
+		int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+		if(endPage>totalpage)
+			endPage=totalpage;
+		// JavaScript ����
+		map.put("list", list);
+		map.put("curpage", page);
+		map.put("totalpage", totalpage);
+		map.put("startPage", startPage);
+		map.put("endPage", endPage);
+		map.put("type", type);
+		
+		try
+		{
+			ObjectMapper mapper=new ObjectMapper();
+			result=mapper.writeValueAsString(map);
+			// jackson : ��ü��ȯ ��ü => JSON => Boot���� ž��
+		}catch(Exception ex) {}
+		return result;
+	}
+	
 }

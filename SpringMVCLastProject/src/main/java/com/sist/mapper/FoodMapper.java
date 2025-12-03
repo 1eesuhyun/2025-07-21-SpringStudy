@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Update;
 
 import com.sist.vo.*;
 public interface FoodMapper {
-	// ¸®½ºÆ®
 	@Select("SELECT fno,name,poster,num "
 			+ "FROM(SELECT fno,name,poster,rownum as num "
 			+ "FROM(SELECT fno,name,poster "
@@ -15,10 +14,8 @@ public interface FoodMapper {
 			+ "ORDER BY fno ASC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<FoodVO> foodListData(@Param("start")int start,@Param("end")int end);
-	// ÃÑÆäÀÌÁö
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM menupan_food")
 	public int foodTotalPage();
-	// µðÅ×ÀÏ
 	@Update("UPDATE menupan_food SET "
 			+ "hit=hit+1 "
 			+ "WHERE fno=#{fno}")
@@ -29,7 +26,6 @@ public interface FoodMapper {
 			+ "WHERE fno=#{fno}")
 	public FoodVO foodDetailData(int fno);
 	
-	// °Ë»ö
 	@Select("SELECT fno,name,poster,num "
 			+ "FROM(SELECT fno,name,poster,rownum as num "
 			+ "FROM(SELECT fno,name,poster "
@@ -38,8 +34,21 @@ public interface FoodMapper {
 			+ "ORDER BY fno ASC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<FoodVO> foodFindData(Map map);
-	// ÃÑÆäÀÌÁö
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM menupan_food "
 			+ "WHERE REGEXP_LIKE(address,#{address})")
 	public int foodFindTotalPage(String address);
+	
+	// íƒ€ìž…ë³„
+	@Select("SELECT fno,name,poster,num "
+			+ "FROM(SELECT fno,name,poster,rownum as num "
+			+ "FROM(SELECT fno,name,poster "
+			+ "FROM menupan_food "
+			+ "WHERE REGEXP_LIKE(type,#{type}) "
+			+ "ORDER BY fno ASC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<FoodVO> foodTypeData(Map map);
+	@Select("SELECT CEIL(COUNT(*)/12.0) FROM menupan_food "
+			+ "WHERE REGEXP_LIKE(type,#{type})")
+	public int foodTypeTotalPage(String type);
+	
 }
