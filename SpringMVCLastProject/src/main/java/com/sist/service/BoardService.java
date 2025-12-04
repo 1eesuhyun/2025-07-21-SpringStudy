@@ -9,5 +9,9 @@ public interface BoardService {
 	public List<BoardVO> boardListData(int start,int end);
 	public int boardTotalPage();
 	public void boardInsert(BoardVO vo);
+	public BoardVO boardDetailData(int no);
+	public String boardDelete(int no,String pwd);
+	public BoardVO boardUpdateData(int no);
+	public String boardUpdate(BoardVO vo);
 	
 }

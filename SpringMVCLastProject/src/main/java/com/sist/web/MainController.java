@@ -9,8 +9,9 @@ public class MainController {
 	@GetMapping("main/main.do")
 	public String main_main(Model model)
 	{
-		// Model => µ¥ÀÌÅÍ Àü¼Û(HttpServletRequest¸¦ ´ëÃ¼)
+		// Model => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(HttpServletRequestï¿½ï¿½ ï¿½ï¿½Ã¼)
 		model.addAttribute("main_jsp", "../main/home.jsp");
 		return "main/main"; // main/main.jsp
 	} 
+	
 }
